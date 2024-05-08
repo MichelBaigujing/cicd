@@ -32,7 +32,7 @@ jobs:
         if: steps.scan.outcome == 'failure'
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: {{ env.SLACK_CHANNEL }}
+          SLACK_CHANNEL: ${{ env.SLACK_CHANNEL }}
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_FILE_UPLOAD: ${{ env.REPORT_FILE }}
