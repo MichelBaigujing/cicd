@@ -18,3 +18,4 @@ cosign verify --key cosign.pub ghcr.io/chukmunnlee/go-fortune:<tag>
 ```
 
 
+
