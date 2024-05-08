@@ -38,7 +38,10 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_FILE_UPLOAD: ${{ env.REPORT_FILE }}
           SLACK_TITLE: Scan failed - ${{ env.NAME }}
-          SLACK_MESSAGE: Trivy scan failed, see uploaded report please
+          SLACK_MESSAGE: Trivy scan failed, see uploaded report
+      - name: Fail this run
+        if: steps.scan.outcome == 'failure'
+        run: exit 1
 
   build-and-sign:
     name: Build and sign
