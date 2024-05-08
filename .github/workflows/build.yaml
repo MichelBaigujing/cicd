@@ -8,7 +8,6 @@ env:
   REPORT_FILE: trivy-report.txt
   SLACK_CHANNEL: test-submission
   NAME: Ji Jia
-  MATRICULATION: A0291948L
   IMAGE_NAME: cicd
 
 jobs:
@@ -28,7 +27,7 @@ jobs:
           output: ${{ env.REPORT_FILE }}
           ignore-unfixed: true
           format: 'table'
-          severity: 'CRITICAL'
+          severity: 'CRITICAL,HIGH'
           exit-code: '1'
       - name: Notify scan failure
         if: steps.scan.outcome == 'failure'
@@ -72,7 +71,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_TITLE: Image build and signed
-          SLACK_MESSAGE: "*Name:* ${{ env.NAME }}\n*Matriculation:* ${{ env.MATRICULATION }}\n*Email:* ${{ secrets.EMAIL }}\n*Git:* ${{ github.server_url }}/${{ github.repository }} \n*Image:* https://hub.docker.com/repository/docker/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}"
+          SLACK_MESSAGE: "*Name:* ${{ env.NAME }}\n*Matriculation:* ${{ secrets.MATRICULATION }}\n*Email:* ${{ secrets.EMAIL }}\n*Git:* ${{ github.server_url }}/${{ github.repository }} \n*Image:* https://hub.docker.com/repository/docker/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
         
