@@ -75,7 +75,7 @@ jobs:
           channel-id: ${{ env.SLACK_CHANNEL }}
           slack-message: "*Name:* ${{ env.NAME }}\n*Matriculation:* ${{env.MATRICULATION}}\n*Email:* ${{env.EMAIL}}\n*Git:* ${{ github.server_url }}/${{ github.repository }} \n*Image:* https://hub.docker.com/repository/docker/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}"
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
         
   
