@@ -6,7 +6,7 @@ on:
 
 env:
   REPORT_FILE: trivy-report.txt
-  SLACK_CHANNEL: test-submission
+  SLACK_CHANNEL: submission
   NAME: Ji Jia
   IMAGE_NAME: cicd
 
@@ -27,7 +27,7 @@ jobs:
           output: ${{ env.REPORT_FILE }}
           ignore-unfixed: true
           format: 'table'
-          severity: 'CRITICAL'
+          severity: 'CRITICAL,HIGH'
           exit-code: '1'
       - name: Notify scan failure
         if: steps.scan.outcome == 'failure'
